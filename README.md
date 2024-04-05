@@ -1,24 +1,63 @@
-# README
+## テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+|Column------------|Type--|Options------------------|
+|------------------|------|-------------------------|
+|nickname----------|string|null: false--------------|
+|email-------------|string|null: false, unique: true|
+|encrypted_password|string|null: false--------------|
 
-* System dependencies
+### Association
 
-* Configuration
+-has_many :items
 
-* Database creation
 
-* Database initialization
+## items テーブル
 
-* How to run the test suite
+|Column----|Type------|Options------------------------|
+|----------|----------|-------------------------------|
+|image-----|references|null: false, foreign_key: true-|
+|item------|string----|null: false--------------------|
+|message---|text------|null: false--------------------|
+|category--|string----|null: false--------------------|
+|situation-|string----|null: false--------------------|
+|user------|references|null: false, foreign_key: true-|
+|address---|references|null: false, foreign_key: true-|
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
 
-* Deployment instructions
+-has_one :purchase
+-belogs_to :user
+-belogs_to :address
 
-* ...
+
+## purchases テーブル
+
+|Column-|Type--|Options----------------------------|
+|-------|------|-----------------------------------|
+|item---|references|null: false, foreign_key: true-|
+|address|references|null: false, foreign_key: true-|
+
+### Association
+
+-belogs_to :item
+-belogs_to :address
+
+
+## address テーブル
+
+|Column------|Type--|Options----------------------------|
+|------------|------|-----------------------------------|
+|postcode----|string|null: false------------------------|
+|prefecture--|string|null: false------------------------|
+|city--------|string|null: false------------------------|
+|block-------|string|null: false------------------------|
+|building----|string|-----------------------------------|
+|phone_number|string|null: false------------------------|
+
+### Association
+
+-has_many :items
+-has_one :purchase
