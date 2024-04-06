@@ -3,61 +3,68 @@
 
 ## users テーブル
 
-|Column------------|Type--|Options------------------|
+|Column            |Type  |Options                  |
 |------------------|------|-------------------------|
-|nickname----------|string|null: false--------------|
-|email-------------|string|null: false, unique: true|
-|encrypted_password|string|null: false--------------|
+|nickname          |string|null: false              |
+|email             |string|null: false, unique: true|
+|encrypted_password|string|null: false              |
+|last_name         |string|null: false              |
+|first_name        |string|null: false              |
+|last_name_kana    |string|null: false              |
+|first_name_kana   |string|null: false              |
+|birthday_id       |date  |null: false              |
 
 ### Association
 
 -has_many :items
-
+-has_many :purchases
 
 ## items テーブル
 
-|Column----|Type------|Options------------------------|
-|----------|----------|-------------------------------|
-|image-----|references|null: false, foreign_key: true-|
-|item------|string----|null: false--------------------|
-|message---|text------|null: false--------------------|
-|category--|string----|null: false--------------------|
-|situation-|string----|null: false--------------------|
-|user------|references|null: false, foreign_key: true-|
-|address---|references|null: false, foreign_key: true-|
+|Column       |Type       |Options                       |
+|-------------|-----------|------------------------------|
+|item         |string     |null: false                   |
+|message      |text       |null: false                   |
+|category_id  |integer    |null: false                   |
+|situation_id |integer    |null: false                   |
+|expense_id   |integer    |null: false                   |
+|prefecture_id|integer    |null: false                   |
+|until_day_id |integer    |null: false                   |
+|price        |string     |null: false                   |
+|user         |references |null: false, foreign_key: true|
+
 
 ### Association
 
 -has_one :purchase
 -belogs_to :user
--belogs_to :address
+
 
 
 ## purchases テーブル
 
-|Column-|Type--|Options----------------------------|
-|-------|------|-----------------------------------|
-|item---|references|null: false, foreign_key: true-|
-|address|references|null: false, foreign_key: true-|
+|Column |Type      |Options                       |
+|-------|----------|------------------------------|
+|item   |references|null: false, foreign_key: true|
+|user   |references|null: false, foreign_key: true|
 
 ### Association
 
+-has_one :address
+-belogs_to :user
 -belogs_to :item
--belogs_to :address
 
 
 ## address テーブル
 
-|Column------|Type--|Options----------------------------|
-|------------|------|-----------------------------------|
-|postcode----|string|null: false------------------------|
-|prefecture--|string|null: false------------------------|
-|city--------|string|null: false------------------------|
-|block-------|string|null: false------------------------|
-|building----|string|-----------------------------------|
-|phone_number|string|null: false------------------------|
+|Column       |Type   |Options              |
+|-------------|-------|---------------------|
+|postcode     |string |null: false          |
+|prefecture_id|integer|null: false          |
+|city         |string |null: false          |
+|block        |string |null: false          |
+|building     |string |                     |
+|phone_number |string |null: false          |
 
 ### Association
-
--has_many :items
--has_one :purchase
+-belogs_to :purchase
