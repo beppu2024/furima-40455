@@ -12,12 +12,13 @@
 |first_name        |string|null: false              |
 |last_name_kana    |string|null: false              |
 |first_name_kana   |string|null: false              |
-|birthday_id       |date  |null: false              |
+|birthday          |date  |null: false              |
 
 ### Association
 
 -has_many :items
 -has_many :purchases
+
 
 ## items テーブル
 
@@ -30,9 +31,8 @@
 |expense_id   |integer    |null: false                   |
 |prefecture_id|integer    |null: false                   |
 |until_day_id |integer    |null: false                   |
-|price        |string     |null: false                   |
+|price        |integer    |null: false                   |
 |user         |references |null: false, foreign_key: true|
-
 
 ### Association
 
@@ -57,14 +57,15 @@
 
 ## address テーブル
 
-|Column       |Type   |Options              |
-|-------------|-------|---------------------|
-|postcode     |string |null: false          |
-|prefecture_id|integer|null: false          |
-|city         |string |null: false          |
-|block        |string |null: false          |
-|building     |string |                     |
-|phone_number |string |null: false          |
+|Column       |Type      |Options                       |
+|-------------|----------|------------------------------|
+|postcode     |string    |null: false                   |
+|prefecture_id|integer   |null: false                   |
+|city         |string    |null: false                   |
+|block        |string    |null: false                   |
+|building     |string    |                              |
+|phone_number |string    |null: false                   |
+|purchase     |references|null: false, foreign_key: true|
 
 ### Association
 -belogs_to :purchase
