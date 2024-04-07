@@ -37,7 +37,7 @@
 ### Association
 
 -has_one :purchase
--belogs_to :user
+-belongs_to :user
 
 
 
@@ -51,8 +51,8 @@
 ### Association
 
 -has_one :address
--belogs_to :user
--belogs_to :item
+-belongs_to :user
+-belongs_to :item
 
 
 ## address テーブル
@@ -68,4 +68,4 @@
 |purchase     |references|null: false, foreign_key: true|
 
 ### Association
--belogs_to :purchase
+-belongs_to :purchase
