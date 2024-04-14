@@ -86,3 +86,5 @@ gem 'image_processing', '~> 1.2'
 gem 'pry-rails'
 
 gem 'devise'
+
+gem 'active_hash'
