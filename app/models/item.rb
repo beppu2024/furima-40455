@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :until_day
   has_one_attached :image
+  
 
   validates :category_id, numericality: { other_than: 1 }
   validates :situation_id, numericality: { other_than: 1 }
