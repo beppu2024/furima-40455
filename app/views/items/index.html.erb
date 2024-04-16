@@ -123,11 +123,8 @@
 
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
-    <div class="subtitle" >
-      新規投稿商品
-    </div>
+    <div class="subtitle" >新規投稿商品</div>
     <ul class='item-lists'>
-
       <% @items.each do |item| %>
         <li class='list'>
           <%= link_to item_path(item) do %>
@@ -153,8 +150,6 @@
         </li>
       <% end %>
 
-
-      
       <% if @items.empty? %>
         <li class='list'>
           <%= link_to '#' do %>
@@ -173,11 +168,9 @@
             </div>
           <% end %>
         </li>
-
       <% end %>
     </ul>
   </div>
-
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
