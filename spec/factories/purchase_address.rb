@@ -1,4 +1,5 @@
 FactoryBot.define do
+  
   factory :purchase_address do
     user_id { Faker::Number.non_zero_digit }
     item_id { Faker::Number.non_zero_digit }

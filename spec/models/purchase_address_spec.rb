@@ -36,7 +36,6 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.prefecture_id = 1
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Prefecture can't be blank")
-        # expect(@purchase_address.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it '市区町村が空だと保存できない' do
         @purchase_address.city = nil
@@ -67,6 +66,18 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.token = nil
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it '電話番号が9桁以下では保存できない' do
+        @purchase_address.phone_number = '123456789'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Phone number is invalid')
+      end
+
+      it '郵便番号にハイフン(-)が含まれていないと保存できない' do
+        @purchase_address.postcode = '1234567'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Postcode can't be blank")
       end
     end
   end

@@ -5,11 +5,11 @@ class PurchaseAddress
   with_options presence: true do
     validates :user_id
     validates :item_id
-    validates :postcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Postcode can't be blank" }
+    validates :postcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "can't be blank" }
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :block
-    validates :phone_number, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
+    validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid' }
     validates :token
   end
   # validates :prefecture_id, numericality: { other_than: 1 }
