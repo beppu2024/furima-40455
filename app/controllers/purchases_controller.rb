@@ -20,7 +20,6 @@ class PurchasesController < ApplicationController
     end
   end
 
-  
   private
 
   def set_item
@@ -48,9 +47,9 @@ class PurchasesController < ApplicationController
   end
 
   def redirect_root
-    if @item.user == current_user || @item.purchase.present?
-      redirect_to root_path
-    end
+    return unless @item.user == current_user || @item.purchase.present?
+
+    redirect_to root_path
   end
 
   def redirect_if_owner
