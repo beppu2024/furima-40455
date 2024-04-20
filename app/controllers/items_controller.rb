@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:edit, :update]
+  before_action :sold_out_item, only: [:edit]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -20,29 +20,35 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
-    unless current_user == @item.user
-      redirect_to root_path
-    end
+    return if current_user == @item.user
+
+    redirect_to root_path
   end
 
   def update
-    if @item.update(item_params)
+    @item.update(item_params)
+    if @item.valid?
       redirect_to item_path(@item)
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
-  def destroy 
+  def destroy
     if current_user == @item.user
       @item.destroy
       redirect_to root_path
     else
       redirect_to root_path
     end
+  end
+
+  def sold_out_item
+    redirect_to root_path if @item.purchase.present?
   end
 
 

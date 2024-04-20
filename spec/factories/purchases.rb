@@ -1,4 +1,4 @@
 FactoryBot.define do
-  factory :article do
+  factory :purchase do
   end
 end
