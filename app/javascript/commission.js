@@ -1,4 +1,5 @@
-window.addEventListener('load', () => {
+const pay = () => {
+
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
       const inputValue = priceInput.value;
@@ -13,4 +14,6 @@ window.addEventListener('load', () => {
       const profitDom = document.getElementById("profit");
       profitDom.innerHTML = profitValue;
   });
-});
+};
+  window.addEventListener("turbo:load", pay);
+  window.addEventListener("turbo:render", pay);
