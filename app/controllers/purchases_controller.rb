@@ -53,6 +53,6 @@ class PurchasesController < ApplicationController
   end
 
   def redirect_if_owner
-    redirect_to root_path if @item.user == current_user
+    redirect_to root_path if @item.user == current_user || @item.purchase.present? 
   end
 end
